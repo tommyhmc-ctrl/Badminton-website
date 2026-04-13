@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://visionbadminton.ca/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://visionbadminton.ca/pages/programs</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://visionbadminton.ca/pages/group-training</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://visionbadminton.ca/pages/schedule</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://visionbadminton.ca/pages/pickleball</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://visionbadminton.ca/pages/coaching</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://visionbadminton.ca/pages/pricing</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://visionbadminton.ca/pages/booking</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://visionbadminton.ca/pages/events</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://visionbadminton.ca/pages/membership</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://visionbadminton.ca/pages/visit</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://visionbadminton.ca/pages/rules</loc><priority>0.5</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://visionbadminton.ca/pages/waiver</loc><priority>0.4</priority><changefreq>yearly</changefreq></url>
+</urlset>
