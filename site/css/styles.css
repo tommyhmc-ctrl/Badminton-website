@@ -1721,8 +1721,15 @@ body.is-entering-ready .site-footer {
     display: none;
   }
 
+  .nav-dropdown-menu {
+    overflow: hidden;
+    max-height: 0;
+    display: block !important;
+    transition: max-height 280ms ease;
+  }
+
   .nav-dropdown.dropdown-open .nav-dropdown-menu {
-    display: block;
+    max-height: 300px;
   }
 
   .nav-dropdown > a {

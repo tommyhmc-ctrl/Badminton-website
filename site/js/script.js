@@ -46,16 +46,17 @@ if (navToggle && navLinks) {
 
 // Mobile dropdown: tap trigger to expand/collapse submenu
 document.querySelectorAll(".nav-dropdown > a").forEach((trigger) => {
-  trigger.addEventListener("click", (e) => {
-    if (window.innerWidth > 860) return;
+  const toggle = (e) => {
+    if (!window.matchMedia("(max-width: 860px)").matches) return;
+    e.preventDefault();
+    e.stopPropagation();
     const dropdown = trigger.closest(".nav-dropdown");
     const isOpen = dropdown.classList.contains("dropdown-open");
     document.querySelectorAll(".nav-dropdown").forEach((d) => d.classList.remove("dropdown-open"));
-    if (!isOpen) {
-      e.preventDefault();
-      dropdown.classList.add("dropdown-open");
-    }
-  });
+    if (!isOpen) dropdown.classList.add("dropdown-open");
+  };
+  trigger.addEventListener("touchstart", toggle, { passive: false });
+  trigger.addEventListener("click", toggle);
 });
 
 // Close nav when a submenu item is tapped
