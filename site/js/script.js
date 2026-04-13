@@ -19,6 +19,19 @@ if (page) {
   document.querySelector(`[data-nav="${page}"]`)?.classList.add("is-active");
 }
 
+// Hide header on scroll down, show on scroll up
+const siteHeader = document.querySelector(".site-header");
+let lastScrollY = window.scrollY;
+window.addEventListener("scroll", () => {
+  const current = window.scrollY;
+  if (current > lastScrollY && current > 80) {
+    siteHeader.classList.add("header-hidden");
+  } else {
+    siteHeader.classList.remove("header-hidden");
+  }
+  lastScrollY = current;
+}, { passive: true });
+
 function closeNav() {
   if (navToggle) navToggle.setAttribute("aria-expanded", "false");
   if (navLinks) navLinks.classList.remove("open");
