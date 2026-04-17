@@ -999,7 +999,55 @@ a.program-detail {
 }
 
 .coach-profile-grid {
-  align-items: start;
+  align-items: stretch;
+}
+
+.coaches-accordion {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.coaches-accordion-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 2.25rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: "Manrope", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  text-align: center;
+  gap: 1rem;
+}
+
+.coaches-accordion-trigger:hover {
+  color: var(--brand);
+}
+
+.coaches-accordion-icon {
+  width: 1.75rem;
+  height: 1.75rem;
+  flex-shrink: 0;
+  transition: transform 280ms ease;
+  color: var(--brand);
+}
+
+.coaches-accordion[data-open] .coaches-accordion-icon {
+  transform: rotate(180deg);
+}
+
+.coaches-accordion-panel {
+  padding: 0 1.75rem 1.75rem;
+}
+
+.coaches-accordion-panel .coach-profile-grid {
+  margin-top: 0;
 }
 
 .coach-profile {
@@ -1074,6 +1122,44 @@ a.program-detail {
   color: var(--muted);
   font-size: 0.94rem;
   text-align: center;
+}
+
+.pricing-tabs-section {
+  padding-bottom: 0;
+}
+
+.pricing-tabs {
+  display: flex;
+  gap: 0.5rem;
+  background: var(--surface-soft);
+  border-radius: 999px;
+  padding: 0.3rem;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.pricing-tab {
+  padding: 0.55rem 1.75rem;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-family: "Manrope", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 220ms ease, color 220ms ease, box-shadow 220ms ease;
+  line-height: 1;
+}
+
+.pricing-tab:hover:not(.pricing-tab-active) {
+  color: var(--brand);
+}
+
+.pricing-tab-active {
+  background: var(--brand);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(43, 86, 114, 0.25);
 }
 
 .table-wrap {
@@ -1554,6 +1640,64 @@ iframe[title="Vision Badminton location"] {
 
 .announcement-body p + p {
   margin-top: 0.8rem;
+}
+
+.disclaimer-body {
+  display: grid;
+  gap: 1rem;
+}
+
+.disclaimer-item {
+  border-left: 3px solid var(--accent);
+  padding-left: 0.85rem;
+}
+
+.disclaimer-item strong {
+  display: block;
+  color: var(--text);
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+
+.disclaimer-item p {
+  margin: 0;
+  font-size: 0.88rem;
+}
+
+.pricing-policies {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.pricing-policy-item {
+  background: var(--surface-soft);
+  border-radius: var(--radius-small);
+  padding: 1rem 1.1rem;
+  border-left: 3px solid var(--accent);
+}
+
+.pricing-policy-item strong {
+  display: block;
+  color: var(--text);
+  font-size: 0.88rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.pricing-policy-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.5;
+  font-weight: 700;
+}
+
+@media (max-width: 720px) {
+  .pricing-policies {
+    grid-template-columns: 1fr;
+  }
 }
 
 .announcement-actions {

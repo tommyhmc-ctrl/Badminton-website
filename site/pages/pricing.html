@@ -92,168 +92,449 @@
         </div>
       </section>
 
-      <section class="section container">
-        <div class="pricing-table-section">
-          <div class="pricing-panel-head">
-            <div>
-              <p class="eyebrow">Court Rental</p>
-              <h2>Court rental pricing.</h2>
-            </div>
-            <p class="pricing-note">Court rental rates for weekday, evening, and weekend bookings.</p>
-          </div>
-          <div class="table-wrap court-table-wrap">
-            <table class="rate-table court-rate-table">
-              <caption class="sr-only">Vision Badminton court rental pricing</caption>
-              <colgroup>
-                <col class="court-col-category" />
-                <col class="court-col-day" />
-                <col class="court-col-time" />
-                <col class="court-col-rate" />
-              </colgroup>
-              <thead>
-                <tr>
-                  <th scope="col">Category</th>
-                  <th scope="col">Day</th>
-                  <th scope="col">Time</th>
-                  <th scope="col">Rate</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Court Rental</td>
-                  <td>Monday to Friday</td>
-                  <td>9:00am to 5:00pm</td>
-                  <td class="rate-value court-rate-value">$20/hr</td>
-                </tr>
-                <tr>
-                  <td>Evening Court Rental</td>
-                  <td>Monday to Friday</td>
-                  <td>5:00pm to 12:00am</td>
-                  <td class="rate-value court-rate-value">$30/hr</td>
-                </tr>
-                <tr>
-                  <td>Weekend Court Rental</td>
-                  <td>Saturday to Sunday</td>
-                  <td>9:00am to 12:00am</td>
-                  <td class="rate-value court-rate-value">$30/hr</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+      <section class="section container pricing-tabs-section">
+        <div class="pricing-tabs" role="tablist" aria-label="Sport pricing">
+          <button class="pricing-tab pricing-tab-active" role="tab" aria-selected="true" aria-controls="panel-badminton" id="tab-badminton" data-pricing-tab="badminton">Badminton</button>
+          <button class="pricing-tab" role="tab" aria-selected="false" aria-controls="panel-pickleball" id="tab-pickleball" data-pricing-tab="pickleball">Pickleball</button>
         </div>
       </section>
 
-      <section class="section container">
-        <div class="pricing-table-section">
-          <div class="pricing-panel-head">
-            <div>
-              <p class="eyebrow">Drop-In</p>
-              <h2>Drop-in pricing.</h2>
-            </div>
-            <p class="pricing-note">Drop-in rates by day and time.</p>
-          </div>
-          <div class="table-wrap court-table-wrap">
-            <table class="rate-table court-rate-table">
-              <caption class="sr-only">Vision Badminton drop-in pricing</caption>
-              <colgroup>
-                <col class="court-col-category" />
-                <col class="court-col-day" />
-                <col class="court-col-time" />
-                <col class="court-col-rate" />
-              </colgroup>
-              <thead>
-                <tr>
-                  <th scope="col">Category</th>
-                  <th scope="col">Day</th>
-                  <th scope="col">Time</th>
-                  <th scope="col">Rate</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Drop-In</td>
-                  <td>Monday to Friday</td>
-                  <td>9:00am to 5:00pm</td>
-                  <td class="rate-value court-rate-value">$8</td>
-                </tr>
-                <tr>
-                  <td>Drop-In</td>
-                  <td>Monday</td>
-                  <td>5:00pm to 10:00pm</td>
-                  <td class="rate-value court-rate-value">$10</td>
-                </tr>
-                <tr>
-                  <td>Late Drop-In</td>
-                  <td>Monday to Friday</td>
-                  <td>10:00pm to 12:00am</td>
-                  <td class="rate-value court-rate-value">$5</td>
-                </tr>
-                <tr>
-                  <td>Weekend Drop-In</td>
-                  <td>Saturday to Sunday</td>
-                  <td>9:00am to 12:00am</td>
-                  <td class="rate-value court-rate-value">$12</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="pricing-note">Reminder: please call in advance to confirm drop-in court availability and whether the court has already been fully booked. No advance confirmation is needed between 9:00 AM and 5:00 PM.</p>
-        </div>
-      </section>
+      <!-- Badminton Pricing Panel -->
+      <div id="panel-badminton" role="tabpanel" aria-labelledby="tab-badminton" data-pricing-panel="badminton">
 
-      <section class="section section-tint">
-        <div class="container">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">Lessons and Clinics</p>
-              <h2>Training pricing at a glance.</h2>
+        <section class="section container">
+          <div class="pricing-table-section">
+            <div class="pricing-panel-head">
+              <div>
+                <p class="eyebrow">Court Rental</p>
+                <h2>Court rental pricing.</h2>
+              </div>
+              <p class="pricing-note">Court rental rates for weekday, evening, and weekend bookings.</p>
             </div>
-            <p class="section-copy">Review lesson and clinic rates alongside court rentals and drop-in options.</p>
+            <div class="table-wrap court-table-wrap">
+              <table class="rate-table court-rate-table">
+                <caption class="sr-only">Vision Badminton court rental pricing</caption>
+                <colgroup>
+                  <col class="court-col-category" />
+                  <col class="court-col-day" />
+                  <col class="court-col-time" />
+                  <col class="court-col-rate" />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th scope="col">Category</th>
+                    <th scope="col">Day</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Rate</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Court Rental</td>
+                    <td>Monday to Friday</td>
+                    <td>9:00am to 5:00pm</td>
+                    <td class="rate-value court-rate-value">$20/hr</td>
+                  </tr>
+                  <tr>
+                    <td>Evening Court Rental</td>
+                    <td>Monday to Friday</td>
+                    <td>5:00pm to 12:00am</td>
+                    <td class="rate-value court-rate-value">$30/hr</td>
+                  </tr>
+                  <tr>
+                    <td>Weekend Court Rental</td>
+                    <td>Saturday to Sunday</td>
+                    <td>9:00am to 12:00am</td>
+                    <td class="rate-value court-rate-value">$30/hr</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="pricing-policies">
+              <div class="pricing-policy-item">
+                <strong>Late Cancellation</strong>
+                <p>Fees will be charged for any cancellation within 24 hours of the court booked time.</p>
+              </div>
+              <div class="pricing-policy-item">
+                <strong>Empty Court Usage</strong>
+                <p>Any individual that is not a drop-in individual is not permitted to use empty courts.</p>
+              </div>
+              <div class="pricing-policy-item">
+                <strong>Cleaning Fee</strong>
+                <p>Please bring indoor non-marking shoes or court shoes to change into before entering the court area. Otherwise a cleaning fee will be charged.</p>
+              </div>
+            </div>
           </div>
-          <div class="table-wrap">
-            <table class="rate-table">
-              <thead>
-                <tr>
-                  <th scope="col">Program</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">Notes</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Clinic Series</td>
-                  <td class="rate-value">$200</td>
-                  <td>5-week pickleball clinic package</td>
-                </tr>
-                <tr>
-                  <td>Private Lesson</td>
-                  <td><a class="button button-small" href="visit.html">Contact Us</a></td>
-                  <td>Varies by coach — reach out to get a quote</td>
-                </tr>
-                <tr>
-                  <td>Semi-Private Lesson</td>
-                  <td><a class="button button-small" href="visit.html">Contact Us</a></td>
-                  <td>Varies by coach — reach out to get a quote</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="section container">
-        <div class="split-grid pricing-split">
-          <div>
-            <p class="eyebrow">Quick Notes</p>
-            <h2>Choose the pricing path that matches what you are coming in for.</h2>
+        <section class="section container">
+          <div class="pricing-table-section">
+            <div class="pricing-panel-head">
+              <div>
+                <p class="eyebrow">Drop-In</p>
+                <h2>Drop-in pricing.</h2>
+              </div>
+              <p class="pricing-note">Drop-in rates by day and time.</p>
+            </div>
+            <div class="table-wrap court-table-wrap">
+              <table class="rate-table court-rate-table">
+                <caption class="sr-only">Vision Badminton drop-in pricing</caption>
+                <colgroup>
+                  <col class="court-col-category" />
+                  <col class="court-col-day" />
+                  <col class="court-col-time" />
+                  <col class="court-col-rate" />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th scope="col">Category</th>
+                    <th scope="col">Day</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Rate</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Drop-In</td>
+                    <td>Monday to Friday</td>
+                    <td>9:00am to 5:00pm</td>
+                    <td class="rate-value court-rate-value">$8</td>
+                  </tr>
+                  <tr>
+                    <td>Drop-In</td>
+                    <td>Monday</td>
+                    <td>5:00pm to 10:00pm</td>
+                    <td class="rate-value court-rate-value">$10</td>
+                  </tr>
+                  <tr>
+                    <td>Late Drop-In</td>
+                    <td>Monday to Friday</td>
+                    <td>10:00pm to 12:00am</td>
+                    <td class="rate-value court-rate-value">$5</td>
+                  </tr>
+                  <tr>
+                    <td>Weekend Drop-In</td>
+                    <td>Saturday to Sunday</td>
+                    <td>9:00am to 12:00am</td>
+                    <td class="rate-value court-rate-value">$12</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="pricing-note">Reminder: please call in advance to confirm drop-in court availability and whether the court has already been fully booked. No advance confirmation is needed between 9:00 AM and 5:00 PM.</p>
           </div>
-          <div class="feature-list">
-            <article class="feature-row"><h3>Court bookings</h3><p>Use the day and time band that matches when you plan to play.</p></article>
-            <article class="feature-row"><h3>Lessons</h3><p>Private and semi-private lessons are separate from court rental and may include additional drop-in fees.</p></article>
-            <article class="feature-row"><h3>Questions before booking</h3><p>If you are not sure what applies, contact Vision before reserving your court or lesson slot.</p></article>
+        </section>
+
+        <section class="section section-tint">
+          <div class="container">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Lessons</p>
+                <h2>Badminton training pricing.</h2>
+              </div>
+              <p class="section-copy">Private and semi-private lesson rates vary by coach — reach out to get a quote.</p>
+            </div>
+            <div class="table-wrap">
+              <table class="rate-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Program</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Private Lesson</td>
+                    <td><a class="button button-small" href="visit.html">Contact Us</a></td>
+                    <td>Varies by coach — reach out to get a quote</td>
+                  </tr>
+                  <tr>
+                    <td>Semi-Private Lesson</td>
+                    <td><a class="button button-small" href="visit.html">Contact Us</a></td>
+                    <td>Varies by coach — reach out to get a quote</td>
+                  </tr>
+                  <tr>
+                    <td>Group Training</td>
+                    <td><a class="button button-small" href="group-training.html">Inquire</a></td>
+                    <td>Structured sessions for all levels — contact for placement</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        <section class="section container">
+          <div class="split-grid pricing-split">
+            <div>
+              <p class="eyebrow">Quick Notes</p>
+              <h2>Choose the pricing path that matches what you are coming in for.</h2>
+            </div>
+            <div class="feature-list">
+              <article class="feature-row"><h3>Court bookings</h3><p>Use the day and time band that matches when you plan to play.</p></article>
+              <article class="feature-row"><h3>Lessons</h3><p>Private and semi-private lessons are separate from court rental and may include additional drop-in fees.</p></article>
+              <article class="feature-row"><h3>Questions before booking</h3><p>If you are not sure what applies, contact Vision before reserving your court or lesson slot.</p></article>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Pickleball Pricing Panel -->
+      <div id="panel-pickleball" role="tabpanel" aria-labelledby="tab-pickleball" data-pricing-panel="pickleball" hidden>
+
+        <section class="section container">
+          <a class="pickleball-site-band" href="https://www.visionpickleball.ca/" target="_blank" rel="noreferrer">
+            <div class="pickleball-site-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20"/><path d="M2 12h20"/><path d="M12 2c-2.5 3-4 6.5-4 10s1.5 7 4 10"/></svg>
+            </div>
+            <div class="pickleball-site-copy">
+              <p class="eyebrow">Dedicated Pickleball Hub</p>
+              <p class="pickleball-site-title">Visit visionpickleball.ca</p>
+              <p class="pickleball-site-desc">For full pickleball program details, schedules, and registration visit our dedicated pickleball website.</p>
+            </div>
+            <div class="pickleball-site-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+        </section>
+
+        <section class="section container">
+          <div class="pricing-table-section">
+            <div class="pricing-panel-head">
+              <div>
+                <p class="eyebrow">Court Rental</p>
+                <h2>Pickleball court rental pricing.</h2>
+              </div>
+              <p class="pricing-note">Reserve Courts 19–22 through online booking and add the note "Pickleball" for our reference. No rentals available before noon.</p>
+            </div>
+            <div class="table-wrap court-table-wrap">
+              <table class="rate-table court-rate-table">
+                <caption class="sr-only">Vision Badminton pickleball court rental pricing</caption>
+                <colgroup>
+                  <col class="court-col-category" />
+                  <col class="court-col-day" />
+                  <col class="court-col-time" />
+                  <col class="court-col-rate" />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th scope="col">Category</th>
+                    <th scope="col">Day</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Rate</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Court Rental</td>
+                    <td>Monday to Friday</td>
+                    <td>12:00pm to 5:00pm</td>
+                    <td class="rate-value court-rate-value">$25/hr</td>
+                  </tr>
+                  <tr>
+                    <td>Evening &amp; Weekend Rental</td>
+                    <td>Mon–Fri evenings &amp; Sat–Sun</td>
+                    <td>5:00pm onward / all day</td>
+                    <td class="rate-value court-rate-value">$35/hr</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="pricing-policies">
+              <div class="pricing-policy-item">
+                <strong>Late Cancellation</strong>
+                <p>Fees will be charged for any cancellation within 24 hours of the court booked time.</p>
+              </div>
+              <div class="pricing-policy-item">
+                <strong>Empty Court Usage</strong>
+                <p>Any individual that is not a drop-in individual is not permitted to use empty courts.</p>
+              </div>
+              <div class="pricing-policy-item">
+                <strong>Cleaning Fee</strong>
+                <p>Please bring indoor non-marking shoes or court shoes to change into before entering the court area. Otherwise a cleaning fee will be charged.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section container">
+          <div class="pricing-table-section">
+            <div class="pricing-panel-head">
+              <div>
+                <p class="eyebrow">Drop-In Rates</p>
+                <h2>Pickleball drop-in pricing.</h2>
+              </div>
+              <p class="pricing-note">Two sessions available daily. Members and non-members have separate rates.</p>
+            </div>
+            <div class="table-wrap">
+              <table class="rate-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Category</th>
+                    <th scope="col">Day / Time</th>
+                    <th scope="col">Rate</th>
+                    <th scope="col">Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Member — Weekday</td>
+                    <td>Mon–Fri: 7:30AM–12:00PM &amp; 12:00PM–4:00PM<br />Mon &amp; Thu: 5:00PM–9:00PM</td>
+                    <td class="rate-value">$7</td>
+                    <td>Per session</td>
+                  </tr>
+                  <tr>
+                    <td>Member — Weekend &amp; Holiday</td>
+                    <td>Sat, Sun &amp; Holidays: 8:00AM–12:00PM &amp; 12:00PM–4:00PM</td>
+                    <td class="rate-value">$8</td>
+                    <td>Per session</td>
+                  </tr>
+                  <tr>
+                    <td>Non-Member — Weekday</td>
+                    <td>Same schedule as members</td>
+                    <td class="rate-value">$10</td>
+                    <td>Per session</td>
+                  </tr>
+                  <tr>
+                    <td>Non-Member — Weekend &amp; Holiday</td>
+                    <td>Same schedule as members</td>
+                    <td class="rate-value">$12</td>
+                    <td>Per session</td>
+                  </tr>
+                  <tr>
+                    <td>Punch Card</td>
+                    <td>Any day</td>
+                    <td class="rate-value">$100</td>
+                    <td>11 drop-in sessions — non-members</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="pricing-panel-head" style="margin-top:1.5rem;">
+              <div>
+                <p class="eyebrow">Monthly Packages (Members Only)</p>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table class="rate-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Package</th>
+                    <th scope="col">Rate</th>
+                    <th scope="col">Coverage</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Weekday Only</td>
+                    <td class="rate-value">$75/mo</td>
+                    <td>All weekday sessions</td>
+                  </tr>
+                  <tr>
+                    <td>Weekend Only</td>
+                    <td class="rate-value">$50/mo</td>
+                    <td>All weekend sessions</td>
+                  </tr>
+                  <tr>
+                    <td>7 Days Per Week</td>
+                    <td class="rate-value">$110/mo</td>
+                    <td>All sessions, every day</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="section section-tint">
+          <div class="container">
+            <div class="pricing-table-section">
+              <div class="pricing-panel-head">
+                <div>
+                  <p class="eyebrow">Membership</p>
+                  <h2>Annual membership.</h2>
+                </div>
+                <p class="pricing-note">Members get lower drop-in rates, monthly package access, and priority booking.</p>
+              </div>
+              <div class="table-wrap">
+                <table class="rate-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Item</th>
+                      <th scope="col">Rate</th>
+                      <th scope="col">Notes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Annual Membership</td>
+                      <td class="rate-value">$120/yr</td>
+                      <td>Renews every January 1</td>
+                    </tr>
+                    <tr>
+                      <td>Priority Booking</td>
+                      <td>Included</td>
+                      <td>Members have first call when attendance is at capacity</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section container">
+          <div class="pricing-table-section">
+            <div class="pricing-panel-head">
+              <div>
+                <p class="eyebrow">Clinics &amp; Lessons</p>
+                <h2>Pickleball training pricing.</h2>
+              </div>
+              <p class="pricing-note">Five-week clinics for all levels, plus private lesson options for targeted improvement.</p>
+            </div>
+            <div class="table-wrap">
+              <table class="rate-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Program</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>5-Week Clinic</td>
+                    <td class="rate-value">$200</td>
+                    <td>Beginner, advanced beginner, or intermediate — 90 min/session</td>
+                  </tr>
+                  <tr>
+                    <td>Private Lesson</td>
+                    <td><a class="button button-small" href="visit.html">Contact Us</a></td>
+                    <td>Targeted feedback and faster skill progression</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="section container">
+          <div class="split-grid pricing-split">
+            <div>
+              <p class="eyebrow">Quick Notes</p>
+              <h2>What to know before booking pickleball.</h2>
+            </div>
+            <div class="feature-list">
+              <article class="feature-row"><h3>Court reservations</h3><p>Select Courts 19–22 in the online booking system and note "Pickleball" so staff can prepare the courts.</p></article>
+              <article class="feature-row"><h3>Membership savings</h3><p>An annual membership reduces your per-session cost and unlocks monthly drop-in packages.</p></article>
+              <article class="feature-row"><h3>Questions</h3><p>Not sure which option is right for you? Reach out and Vision will help.</p></article>
+            </div>
+          </div>
+        </section>
+
+      </div>
 
       <section class="section container page-outro">
         <div class="cta-band">
@@ -262,7 +543,7 @@
             <h2>Book a court or reach out if you need help choosing the right option.</h2>
           </div>
           <div class="hero-actions">
-            <a class="button" href="booking.html">Go to Booking</a>
+            <a class="button" href="https://visionbadminton.skedda.com/" target="_blank" rel="noreferrer">Go to Booking</a>
             <a class="button button-secondary" href="visit.html">Ask a Question</a>
           </div>
         </div>
