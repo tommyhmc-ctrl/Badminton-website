@@ -54,7 +54,13 @@
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Toggle menu"><span></span><span></span></button>
         <nav class="nav-links" id="site-menu" aria-label="Primary">
           <a data-nav="home" href="index.html">Home</a>
-          <a data-nav="programs" href="programs.html">Programs</a>
+          <div class="nav-dropdown">
+            <a data-nav="programs" href="programs.html">Programs <span class="nav-caret">&#9660;</span></a>
+            <div class="nav-dropdown-menu">
+              <a href="programs.html">Programs Overview</a>
+              <a href="events.html">Events</a>
+            </div>
+          </div>
           <a data-nav="group-training" href="group-training.html">Group Training</a>
           <div class="nav-dropdown">
             <a data-nav="pickleball" href="pickleball.html">Pickleball <span class="nav-caret">&#9660;</span></a>

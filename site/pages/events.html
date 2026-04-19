@@ -54,7 +54,13 @@
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Toggle menu"><span></span><span></span></button>
         <nav class="nav-links" id="site-menu" aria-label="Primary">
           <a data-nav="home" href="index.html">Home</a>
-          <a data-nav="programs" href="programs.html">Programs</a>
+          <div class="nav-dropdown">
+            <a data-nav="programs" href="programs.html">Programs <span class="nav-caret">&#9660;</span></a>
+            <div class="nav-dropdown-menu">
+              <a href="programs.html">Programs Overview</a>
+              <a href="events.html">Events</a>
+            </div>
+          </div>
           <div class="nav-dropdown">
             <a data-nav="group-training" href="group-training.html">Group Training <span class="nav-caret">&#9660;</span></a>
             <div class="nav-dropdown-menu">
@@ -90,32 +96,14 @@
           </figure>
         </div>
       </section>
-      <section class="section container card-grid">
-        <article class="program-detail">
-          <p class="card-tag">Announcement</p>
-          <h2>Clinic registration windows</h2>
-          <p>Use this area for sign-up openings, session changes, and reminders for upcoming clinic blocks.</p>
-        </article>
-        <article class="program-detail">
-          <p class="card-tag">Event</p>
-          <h2>Club events and tournaments</h2>
-          <p>Highlight community play days, member events, and competition opportunities in a more engaging format.</p>
-        </article>
-        <article class="program-detail">
-          <p class="card-tag">Operations</p>
-          <h2>Holiday hours and notices</h2>
-          <p>Make schedule changes more visible so visitors do not have to guess whether the club is open.</p>
-        </article>
-      </section>
-
-      <section class="section container page-outro">
+      <section class="section container">
         <div class="cta-band">
           <div>
-            <p class="eyebrow">Stay connected</p>
-            <h2>Use updates to bring players back into bookings, events, and club life.</h2>
+            <p class="eyebrow">Coming soon</p>
+            <h2>No events are currently listed. Check back for upcoming tournaments, clinics, and club announcements.</h2>
           </div>
           <div class="hero-actions">
-            <a class="button" href="membership.html">Explore Membership</a>
+            <a class="button" href="https://visionbadminton.skedda.com/" target="_blank" rel="noreferrer">Book a Court</a>
             <a class="button button-secondary" href="visit.html">Contact Vision</a>
           </div>
         </div>
