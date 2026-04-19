@@ -697,21 +697,9 @@ a.program-detail {
   min-height: 34rem;
 }
 
-.visual-large {
-  clip-path: polygon(0 0, 100% 0, 100% 88%, 90% 100%, 0 100%);
-}
-
 .visual-small,
 .visual-small img {
   min-height: 16.5rem;
-}
-
-.visual-small:nth-child(2) {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 14% 100%, 0 84%);
-}
-
-.visual-small:nth-child(3) {
-  clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%, 0 12%);
 }
 
 .page-hero-image,
@@ -1036,10 +1024,11 @@ a.program-detail {
   flex-shrink: 0;
   transition: transform 280ms ease;
   color: var(--brand);
+  transform: rotate(180deg);
 }
 
 .coaches-accordion[data-open] .coaches-accordion-icon {
-  transform: rotate(180deg);
+  transform: rotate(0deg);
 }
 
 .coaches-accordion-panel {
@@ -1061,6 +1050,11 @@ a.program-detail {
   object-fit: cover;
   border-bottom: 1px solid var(--line);
 }
+
+img.coach-photo[src*="samson"] {
+  object-position: center 30%;
+}
+
 
 .coach-profile-body {
   padding: 1.35rem;
@@ -1968,11 +1962,6 @@ body.is-entering-ready .site-footer {
     min-height: 18rem;
   }
 
-  .visual-large,
-  .visual-small:nth-child(2),
-  .visual-small:nth-child(3) {
-    clip-path: none;
-  }
 
   /* ── CTA + Footer ── */
   .cta-band {
