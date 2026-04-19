@@ -4,4 +4,4 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains
-  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; frame-src https://www.google.com; img-src 'self'; connect-src https://api.web3forms.com; form-action 'self'; base-uri 'self'; object-src 'none';
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.voiceflow.com; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com https://cdn.voiceflow.com; frame-src https://www.google.com; img-src 'self' https://cdn.voiceflow.com https://visionbadminton.ca; connect-src https://api.web3forms.com https://general-runtime.voiceflow.com https://runtime-api.voiceflow.com https://cdn.voiceflow.com; form-action 'self'; base-uri 'self'; object-src 'none'; worker-src blob:;
