@@ -219,6 +219,11 @@ document.querySelectorAll("[data-form]").forEach((form) => {
 if (!document.querySelector(".page-transition")) {
   const transitionLayer = document.createElement("div");
   transitionLayer.className = "page-transition";
+  const transitionLogo = document.createElement("img");
+  transitionLogo.src = "../assets/logo-site.png";
+  transitionLogo.alt = "Vision Badminton";
+  transitionLogo.className = "page-transition-logo";
+  transitionLayer.appendChild(transitionLogo);
   document.body.appendChild(transitionLayer);
 }
 
@@ -396,7 +401,7 @@ if (!reduceMotion) {
       document.body.classList.add("is-leaving");
       window.setTimeout(() => {
         window.location.href = href;
-      }, 260);
+      }, 480);
     });
   });
 }
