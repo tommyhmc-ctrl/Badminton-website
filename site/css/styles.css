@@ -1716,8 +1716,20 @@ body.is-entering .page-transition-logo {
 }
 
 .disclaimer-item {
-  border-left: 3px solid var(--accent);
+  border-left: 3px solid var(--line);
   padding-left: 0.85rem;
+}
+
+.disclaimer-item-important {
+  border-left: 3px solid var(--accent);
+  background: var(--vb-orange-100);
+  border-radius: 0 8px 8px 0;
+  padding: 0.75rem 0.85rem;
+}
+
+.disclaimer-item-important strong {
+  color: var(--vb-orange-700);
+  font-size: 0.95rem;
 }
 
 .disclaimer-item strong {

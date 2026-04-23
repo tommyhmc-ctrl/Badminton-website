@@ -118,6 +118,10 @@ document.querySelectorAll("[data-form]").forEach((form) => {
 (function () {
   const disclaimerRules = [
     {
+      title: "Payment Required to Confirm Booking",
+      body: "Your court reservation is not confirmed until payment is received. E-transfer the court fee to info@visionbadminton.com after booking. If payment is not received, the court may be released.",
+    },
+    {
       title: "Late Cancellation",
       body: "Fees will be charged for any cancellation within 24 hours of the court booked time.",
     },
@@ -165,9 +169,9 @@ document.querySelectorAll("[data-form]").forEach((form) => {
 
     const body = document.createElement("div");
     body.className = "announcement-body disclaimer-body";
-    disclaimerRules.forEach(({ title: ruleTitle, body: ruleBody }) => {
+    disclaimerRules.forEach(({ title: ruleTitle, body: ruleBody }, i) => {
       const item = document.createElement("div");
-      item.className = "disclaimer-item";
+      item.className = i === 0 ? "disclaimer-item disclaimer-item-important" : "disclaimer-item";
       const t = document.createElement("strong");
       t.textContent = ruleTitle;
       const p = document.createElement("p");
