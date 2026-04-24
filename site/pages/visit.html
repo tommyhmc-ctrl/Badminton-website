@@ -181,6 +181,7 @@
               <span>Message</span>
               <textarea name="message" rows="5" placeholder="Tell Vision what you’re looking for"></textarea>
             </label>
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAADCbX-CXgPKOlaIS"></div>
             <button class="button" type="submit">Send Inquiry</button>
             <p class="form-note">Send a message and Vision will follow up with the next steps.</p>
             <p class="form-success" hidden>Thanks. Your inquiry has been received.</p>
@@ -236,6 +237,7 @@
               <span>Your feedback</span>
               <textarea name="feedback" rows="6" placeholder="Tell us what went well, what could be better, or any suggestions you have" required></textarea>
             </label>
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAADCbX-CXgPKOlaIS"></div>
             <button class="button" type="submit">Submit Feedback</button>
             <p class="form-note">Your feedback goes directly to the Vision team and helps us improve.</p>
             <p class="form-success" hidden>Thank you — your feedback has been received.</p>
@@ -291,5 +293,6 @@
       </div>
     </footer>
     <script src="../js/script.js"></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   </body>
 </html>
