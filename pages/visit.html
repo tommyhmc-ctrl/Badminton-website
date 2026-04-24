@@ -8,7 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="preload" as="image" href="../assets/club-courts.avif" type="image/avif" />
     <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="icon" type="image/svg+xml" href="../assets/vision-badminton-eagle.svg" />
     <!-- Geo & Local SEO -->
     <meta name="geo.region"    content="CA-ON" />
     <meta name="geo.placename" content="Toronto, Ontario" />
@@ -120,7 +122,10 @@
             <p class="lead">Find the address, hours, contact details, and booking link before your next visit to Vision.</p>
           </div>
           <figure class="page-hero-image">
-            <img src="../assets/club-courts.jpg" alt="Indoor badminton courts at Vision Badminton, 1020 Birchmount Rd, Toronto" />
+            <picture>
+              <source srcset="../assets/club-courts.avif" type="image/avif" />
+              <img src="../assets/club-courts.jpg" alt="Indoor badminton courts at Vision Badminton, 1020 Birchmount Rd, Toronto" fetchpriority="high"/>
+            </picture>
           </figure>
         </div>
       </section>
@@ -261,7 +266,7 @@
 
     <footer class="site-footer">
       <div class="container footer-grid">
-        <div class="footer-group"><a class="brand footer-brand" href="../index.html"><img src="../assets/logo-site.png" alt="Vision Badminton logo" /></a><p class="footer-copy">Find directions, club hours, and contact information before your next visit to Vision Badminton.</p>
+        <div class="footer-group"><a class="brand footer-brand" href="../index.html"><img src="../assets/logo-site.png" alt="Vision Badminton logo" loading="lazy"/></a><p class="footer-copy">Find directions, club hours, and contact information before your next visit to Vision Badminton.</p>
           <div class="social-links">
             <a class="social-link" aria-label="Vision Badminton on Instagram" href="https://www.instagram.com/vision_badminton?igsh=cDFuNmQxc2I4d3Vk&utm_source=qr" target="_blank" rel="noreferrer">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>

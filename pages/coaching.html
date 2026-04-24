@@ -8,7 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="preload" as="image" href="../assets/player-portrait.avif" type="image/avif" />
     <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="icon" type="image/svg+xml" href="../assets/vision-badminton-eagle.svg" />
     <!-- Geo & Local SEO -->
     <meta name="geo.region"    content="CA-ON" />
     <meta name="geo.placename" content="Toronto, Ontario" />
@@ -122,7 +124,10 @@
             <p class="lead">Meet the coaching team and explore private, semi-private, and structured training paths for players at every stage.</p>
           </div>
           <figure class="page-hero-image">
-            <img src="../assets/player-portrait.jpg" alt="Badminton coaching at Vision Badminton Toronto" />
+            <picture>
+              <source srcset="../assets/player-portrait.avif" type="image/avif" />
+              <img src="../assets/player-portrait.jpg" alt="Badminton coaching at Vision Badminton Toronto" fetchpriority="high"/>
+            </picture>
           </figure>
         </div>
       </section>
@@ -153,7 +158,10 @@
           <div class="coaches-accordion-panel" id="coaches-panel">
             <div class="coach-grid coach-profile-grid">
               <article class="coach-card coach-profile">
-                <img class="coach-photo" src="../assets/samson.jpeg" alt="Coach Samson Chan — badminton coach at Vision Badminton Toronto" />
+                <picture>
+                  <source srcset="../assets/samson.avif" type="image/avif" />
+                  <img class="coach-photo" src="../assets/samson.jpeg" alt="Coach Samson Chan — badminton coach at Vision Badminton Toronto" loading="lazy"/>
+                </picture>
                 <div class="coach-profile-body">
                   <h2>Samson Chan</h2>
                   <p>Samson brings a high-performance mindset to every session, developing players through disciplined training, competitive insight, and championship-level experience.</p>
@@ -170,7 +178,10 @@
               </article>
 
               <article class="coach-card coach-profile">
-                <img class="coach-photo" src="../assets/johnny.jpg" alt="Coach Johnny Chen — badminton coach at Vision Badminton Toronto" />
+                <picture>
+                  <source srcset="../assets/johnny.avif" type="image/avif" />
+                  <img class="coach-photo" src="../assets/johnny.jpg" alt="Coach Johnny Chen — badminton coach at Vision Badminton Toronto" loading="lazy"/>
+                </picture>
                 <div class="coach-profile-body">
                   <h2>Johnny Chen</h2>
                   <p>Johnny brings competitive doubles experience and a results-driven approach to players looking to sharpen their game.</p>
@@ -183,7 +194,10 @@
               </article>
 
               <article class="coach-card coach-profile">
-                <img class="coach-photo" src="../assets/coach-steve.jpg" alt="Coach Steve Hsu — badminton coach at Vision Badminton Toronto" />
+                <picture>
+                  <source srcset="../assets/coach-steve.avif" type="image/avif" />
+                  <img class="coach-photo" src="../assets/coach-steve.jpg" alt="Coach Steve Hsu — badminton coach at Vision Badminton Toronto" loading="lazy"/>
+                </picture>
                 <div class="coach-profile-body">
                   <h2>Steve Hsu</h2>
                   <p>Steve fits players who want performance-minded coaching with a blend of competitive playing background and high-performance club work.</p>
@@ -197,7 +211,10 @@
               </article>
 
               <article class="coach-card coach-profile">
-                <img class="coach-photo" src="../assets/coach-jason.jpg" alt="Coach Jason Mak — badminton coach at Vision Badminton Toronto" />
+                <picture>
+                  <source srcset="../assets/coach-jason.avif" type="image/avif" />
+                  <img class="coach-photo" src="../assets/coach-jason.jpg" alt="Coach Jason Mak — badminton coach at Vision Badminton Toronto" loading="lazy"/>
+                </picture>
                 <div class="coach-profile-body">
                   <h2>Jason Mak</h2>
                   <p>Jason is a strong doubles-focused coach profile for players who value match experience, tournament results, and sharper decision-making on court.</p>
@@ -211,7 +228,10 @@
               </article>
 
               <article class="coach-card coach-profile">
-                <img class="coach-photo" src="../assets/coach-willie.jpg" alt="Coach Willie Manalang — badminton coach at Vision Badminton Toronto" />
+                <picture>
+                  <source srcset="../assets/coach-willie.avif" type="image/avif" />
+                  <img class="coach-photo" src="../assets/coach-willie.jpg" alt="Coach Willie Manalang — badminton coach at Vision Badminton Toronto" loading="lazy"/>
+                </picture>
                 <div class="coach-profile-body">
                   <h2>Willie Manalang</h2>
                   <p>Willie anchors the club with a long coaching history across junior development, school programs, and private club leadership.</p>
@@ -225,7 +245,10 @@
               </article>
 
               <article class="coach-card coach-profile">
-                <img class="coach-photo" src="../assets/coach-jenn.jpg" alt="Coach Jen Au — badminton coach at Vision Badminton Toronto" />
+                <picture>
+                  <source srcset="../assets/coach-jenn.avif" type="image/avif" />
+                  <img class="coach-photo" src="../assets/coach-jenn.jpg" alt="Coach Jen Au — badminton coach at Vision Badminton Toronto" loading="lazy"/>
+                </picture>
                 <div class="coach-profile-body">
                   <h2>Jen Au</h2>
                   <p>Jen brings elite competitive experience and a strong technical foundation to players looking for high-level coaching and development.</p>
@@ -258,7 +281,7 @@
 
     <footer class="site-footer">
       <div class="container footer-grid">
-        <div class="footer-group"><a class="brand footer-brand" href="../index.html"><img src="../assets/logo-site.png" alt="Vision Badminton logo" /></a><p class="footer-copy">Coaching positioned as a core trust signal for the club’s long-term player development.</p>
+        <div class="footer-group"><a class="brand footer-brand" href="../index.html"><img src="../assets/logo-site.png" alt="Vision Badminton logo" loading="lazy"/></a><p class="footer-copy">Coaching positioned as a core trust signal for the club’s long-term player development.</p>
           <div class="social-links">
             <a class="social-link" aria-label="Vision Badminton on Instagram" href="https://www.instagram.com/vision_badminton?igsh=cDFuNmQxc2I4d3Vk&utm_source=qr" target="_blank" rel="noreferrer">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>

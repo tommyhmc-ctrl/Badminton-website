@@ -11,7 +11,9 @@
       href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <link rel="preload" as="image" href="assets/club-courts.avif" type="image/avif" />
     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="icon" type="image/svg+xml" href="assets/vision-badminton-eagle.svg" />
     <!-- Geo & Local SEO -->
     <meta name="geo.region"    content="CA-ON" />
     <meta name="geo.placename" content="Toronto, Ontario" />
@@ -155,13 +157,22 @@
 
           <div class="hero-visual">
             <figure class="visual-large">
-              <img src="assets/club-courts.jpg" alt="Indoor badminton courts at Vision Badminton Toronto" />
+              <picture>
+                <source srcset="assets/club-courts.avif" type="image/avif" />
+                <img src="assets/club-courts.jpg" alt="Indoor badminton courts at Vision Badminton Toronto" fetchpriority="high"/>
+              </picture>
             </figure>
             <figure class="visual-small">
-              <img src="assets/player-portrait.jpg" alt="Badminton player training at Vision Badminton in Toronto" />
+              <picture>
+                <source srcset="assets/player-portrait.avif" type="image/avif" />
+                <img src="assets/player-portrait.jpg" alt="Badminton player training at Vision Badminton in Toronto" loading="lazy"/>
+              </picture>
             </figure>
             <figure class="visual-small">
-              <img src="assets/training.jpg" alt="Badminton training session at Vision Badminton Toronto" />
+              <picture>
+                <source srcset="assets/training.avif" type="image/avif" />
+                <img src="assets/training.jpg" alt="Badminton training session at Vision Badminton Toronto" loading="lazy"/>
+              </picture>
             </figure>
           </div>
         </div>
@@ -294,7 +305,7 @@
       <div class="container footer-grid">
         <div class="footer-group">
           <a class="brand footer-brand" href="/">
-            <img src="assets/logo-site.png" alt="Vision Badminton Toronto logo" />
+            <img src="assets/logo-site.png" alt="Vision Badminton Toronto logo" loading="lazy"/>
           </a>
           <p class="footer-copy">Toronto badminton and pickleball with court rentals, clinics, coaching, and community play.</p>
           <div class="social-links">
