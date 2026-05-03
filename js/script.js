@@ -6,12 +6,11 @@ const announcementConfig = {
   title: "Pickleball Court Booking",
   tag: "Reminder",
   body: [
-    "We are pleased to offer pickleball court reservations through our online booking system.",
-    "To reserve a pickleball court, please select Courts 19–22 using our online booking system and kindly write the note: \"Pickleball\" for our references.",
-    "Thank you for your cooperation, and we look forward to welcoming you at Vision Badminton!"
+    "Pickleball court reservations are handled by phone — online booking is not available for pickleball courts.",
+    "To book, please call us at 416-615-2078 or text 437-439-6002. We'll check availability and confirm your spot.",
   ],
-  primaryLabel: "Book Now",
-  primaryHref: "https://visionbadminton.skedda.com/",
+  primaryLabel: "Call Now",
+  primaryHref: "tel:4166152078",
   secondaryLabel: "Close",
 };
 
