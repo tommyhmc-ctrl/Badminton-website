@@ -179,20 +179,44 @@ document.querySelectorAll("[data-form]").forEach((form) => {
       body.appendChild(item);
     });
 
+    const acknowledge = document.createElement("label");
+    acknowledge.className = "disclaimer-acknowledge";
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.id = "disclaimer-agree";
+    const ackText = document.createElement("span");
+    ackText.textContent = "I have read and understand the booking policies above.";
+    acknowledge.append(checkbox, ackText);
+
     const actions = document.createElement("div");
     actions.className = "announcement-actions";
     const continueBtn = document.createElement("a");
-    continueBtn.className = "button";
+    continueBtn.className = "button button-disabled";
     continueBtn.target = "_blank";
     continueBtn.rel = "noreferrer";
     continueBtn.textContent = "Continue to Booking";
+    continueBtn.setAttribute("aria-disabled", "true");
     const cancelBtn = document.createElement("button");
     cancelBtn.className = "button button-secondary";
     cancelBtn.type = "button";
     cancelBtn.textContent = "Cancel";
     actions.append(continueBtn, cancelBtn);
 
-    modal.append(head, body, actions);
+    checkbox.addEventListener("change", () => {
+      if (checkbox.checked) {
+        continueBtn.classList.remove("button-disabled");
+        continueBtn.removeAttribute("aria-disabled");
+      } else {
+        continueBtn.classList.add("button-disabled");
+        continueBtn.setAttribute("aria-disabled", "true");
+      }
+    });
+
+    continueBtn.addEventListener("click", (e) => {
+      if (continueBtn.classList.contains("button-disabled")) e.preventDefault();
+    });
+
+    modal.append(head, body, acknowledge, actions);
     overlay.appendChild(modal);
     document.body.appendChild(overlay);
 

@@ -1783,11 +1783,37 @@ body.is-entering .page-transition-logo {
   }
 }
 
+.disclaimer-acknowledge {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin-top: 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.disclaimer-acknowledge input[type="checkbox"] {
+  flex-shrink: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 0.15rem;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.button-disabled {
+  opacity: 0.4;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
 .announcement-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.85rem;
-  margin-top: 1.25rem;
+  margin-top: 1rem;
 }
 
 body.is-leaving .page-transition,
