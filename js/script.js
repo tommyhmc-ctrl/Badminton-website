@@ -122,7 +122,7 @@ document.querySelectorAll("[data-form]").forEach((form) => {
     },
     {
       title: "Late Cancellation",
-      body: "Fees will be charged for any cancellation within 24 hours of the court booked time.",
+      body: "A 100% cancellation fee equal to the full court booking price applies to any cancellation made within 24 hours of the booked time.",
     },
     {
       title: "Empty Court Usage",
