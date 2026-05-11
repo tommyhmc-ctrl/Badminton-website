@@ -117,8 +117,8 @@ document.querySelectorAll("[data-form]").forEach((form) => {
 (function () {
   const disclaimerRules = [
     {
-      title: "Payment Required to Confirm Booking",
-      body: "Your court reservation is not confirmed until payment is received. E-transfer the court fee to info@visionbadminton.com after booking. If payment is not received, the court may be released.",
+      title: "4% Processing Fee on Online Bookings",
+      body: "All online bookings are subject to a 4% processing fee. To avoid this fee, please call us at 416-615-2078 or text 437-439-6002 to book directly.",
     },
     {
       title: "Late Cancellation",
