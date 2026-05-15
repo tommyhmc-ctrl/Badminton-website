@@ -7,7 +7,7 @@ const announcementConfig = {
   tag: "Reminder",
   body: [
     "Pickleball court reservations are handled by phone — online booking is not available for pickleball courts.",
-    "To book, please call us at 416-615-2078 or text 437-439-6002. We'll check availability and confirm your spot.",
+    "To book, please call us at 416-615-2078 or text (416) 571-9470. We'll check availability and confirm your spot.",
   ],
   primaryLabel: "Call Now",
   primaryHref: "tel:4166152078",
@@ -118,7 +118,7 @@ document.querySelectorAll("[data-form]").forEach((form) => {
   const disclaimerRules = [
     {
       title: "4% Processing Fee on Online Bookings",
-      body: "All online bookings are subject to a 4% processing fee. To avoid this fee, please call us at 416-615-2078 or text 437-439-6002 to book directly.",
+      body: "All online bookings are subject to a 4% processing fee. To avoid this fee, please call us at 416-615-2078 or text (416) 571-9470 to book directly.",
     },
     {
       title: "Late Cancellation",
