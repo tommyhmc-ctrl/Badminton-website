@@ -486,6 +486,17 @@ p {
 .lead,
 .section-copy,
 .feature-row p,
+.program-detail ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.program-detail ul li {
+  margin-bottom: 0.35rem;
+}
+
 .program-detail p,
 .coach-card p,
 .pricing-card p,
