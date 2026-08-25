@@ -254,6 +254,77 @@ if (!document.querySelector(".page-transition")) {
   document.body.appendChild(transitionLayer);
 }
 
+// Site-wide booking system notice — shows once per session
+if (!sessionStorage.getItem("booking-notice-dismissed") && !document.querySelector(".announcement-overlay")) {
+  const bOverlay = document.createElement("div");
+  bOverlay.className = "announcement-overlay";
+
+  const bModal = document.createElement("div");
+  bModal.className = "announcement-modal";
+  bModal.setAttribute("role", "dialog");
+  bModal.setAttribute("aria-modal", "true");
+  bModal.setAttribute("aria-labelledby", "booking-notice-title");
+
+  const bHead = document.createElement("div");
+  bHead.className = "announcement-head";
+  const bHeadText = document.createElement("div");
+  const bEyebrow = document.createElement("p");
+  bEyebrow.className = "eyebrow";
+  bEyebrow.textContent = "Important Notice";
+  const bTitle = document.createElement("h2");
+  bTitle.id = "booking-notice-title";
+  bTitle.textContent = "Booking System Update";
+  bHeadText.append(bEyebrow, bTitle);
+  const bCloseBtn = document.createElement("button");
+  bCloseBtn.className = "announcement-close";
+  bCloseBtn.type = "button";
+  bCloseBtn.setAttribute("aria-label", "Close notice");
+  bCloseBtn.textContent = "×";
+  bHead.append(bHeadText, bCloseBtn);
+
+  const bBody = document.createElement("div");
+  bBody.className = "announcement-body";
+  [
+    "To provide a better service we are switching over our booking system on August 27th 2026.",
+    "If you have any recurring bookings please contact us at 416-615-2078 (call only) or text (416) 571-9470 (text only).",
+    "Any bookings after August 27th 2026 will still be reserved. Thank you for your patience.",
+  ].forEach((line) => {
+    const p = document.createElement("p");
+    p.textContent = line;
+    bBody.appendChild(p);
+  });
+
+  const bActions = document.createElement("div");
+  bActions.className = "announcement-actions";
+  const bCallBtn = document.createElement("a");
+  bCallBtn.className = "button";
+  bCallBtn.href = "tel:4166152078";
+  bCallBtn.textContent = "Call Now";
+  const bDismissBtn = document.createElement("button");
+  bDismissBtn.className = "button button-secondary";
+  bDismissBtn.type = "button";
+  bDismissBtn.textContent = "Close";
+  bActions.append(bCallBtn, bDismissBtn);
+
+  bModal.append(bHead, bBody, bActions);
+  bOverlay.appendChild(bModal);
+  document.body.appendChild(bOverlay);
+
+  const closeBookingNotice = () => {
+    bOverlay.classList.remove("is-open");
+    sessionStorage.setItem("booking-notice-dismissed", "1");
+  };
+
+  bCloseBtn.addEventListener("click", closeBookingNotice);
+  bDismissBtn.addEventListener("click", closeBookingNotice);
+  bOverlay.addEventListener("click", (e) => { if (e.target === bOverlay) closeBookingNotice(); });
+  window.addEventListener("keydown", (e) => { if (e.key === "Escape") closeBookingNotice(); });
+
+  window.setTimeout(() => {
+    bOverlay.classList.add("is-open");
+  }, reduceMotion ? 0 : 300);
+}
+
 if (page === "pickleball" && !document.querySelector(".announcement-overlay")) {
   // Sanitise config values before injecting into DOM
   function safeText(str) {
