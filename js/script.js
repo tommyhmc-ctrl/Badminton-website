@@ -117,8 +117,12 @@ document.querySelectorAll("[data-form]").forEach((form) => {
 (function () {
   const disclaimerRules = [
     {
+      title: "Booking System Update — August 27th 2026",
+      body: "To provide a better service to our customers, we are switching over our booking system on August 27th 2026. If you have any recurring bookings please contact us at 416-615-2078 (call only) or text (416) 571-9470 (text only). Any bookings after August 27th 2026 will still be reserved.",
+    },
+    {
       title: "4% Processing Fee on Online Bookings",
-      body: "All online bookings are subject to a 4% processing fee. To avoid this fee, please call us at 416-615-2078 (call only) or text (416) 571-9470 (text only) to book directly.",
+      body: "All online bookings are subject to a 4% processing fee.",
     },
     {
       title: "Late Cancellation",
@@ -285,7 +289,7 @@ if (!sessionStorage.getItem("booking-notice-dismissed") && !document.querySelect
   const bBody = document.createElement("div");
   bBody.className = "announcement-body";
   [
-    "To provide a better service we are switching over our booking system on August 27th 2026.",
+    "To provide a better service to our customers, we are switching over our booking system on August 27th 2026.",
     "If you have any recurring bookings please contact us at 416-615-2078 (call only) or text (416) 571-9470 (text only).",
     "Any bookings after August 27th 2026 will still be reserved. Thank you for your patience.",
   ].forEach((line) => {
