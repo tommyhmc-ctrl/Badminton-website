@@ -118,7 +118,7 @@ document.querySelectorAll("[data-form]").forEach((form) => {
   const disclaimerRules = [
     {
       title: "Booking System Update — August 27th 2026",
-      body: "To provide a better service to our customers, we are switching over our booking system on August 27th 2026. If you have any concerns about your bookings please contact us at 416-615-2078 (call only) or text (416) 571-9470 (text only). Any bookings after August 27th 2026 will still be reserved and will be handled by our team. Thank you for your patience.",
+      body: "To provide a better service to our customers, we are switching over our booking system on August 27th 2026. The booking system will be down from 5:00 PM to 5:30 PM on August 27th — if you need help booking during this time, please call us at 416-615-2078 (call only) or text (416) 571-9470 (text only). Any bookings after August 27th 2026 will still be reserved and will be handled by our team. Thank you for your patience.",
     },
     {
       title: "4% Processing Fee on Online Bookings",
@@ -290,8 +290,8 @@ if (!sessionStorage.getItem("booking-notice-dismissed") && !document.querySelect
   bBody.className = "announcement-body";
   [
     "To provide a better service to our customers, we are switching over our booking system on August 27th 2026.",
-    "If you have any recurring bookings please contact us at 416-615-2078 (call only) or text (416) 571-9470 (text only).",
-    "Any bookings after August 27th 2026 will still be reserved. Thank you for your patience.",
+    "Please note the booking system will be down from 5:00 PM to 5:30 PM on August 27th. If you need help booking during this time, please call us at 416-615-2078 (call only) or text (416) 571-9470 (text only).",
+    "If you have any concerns about your bookings please contact us at 416-615-2078 (call only) or text (416) 571-9470 (text only). Any bookings after August 27th 2026 will still be reserved and will be handled by our team. Thank you for your patience.",
   ].forEach((line) => {
     const p = document.createElement("p");
     p.textContent = line;
