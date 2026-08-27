@@ -117,10 +117,6 @@ document.querySelectorAll("[data-form]").forEach((form) => {
 (function () {
   const disclaimerRules = [
     {
-      title: "Booking System Update — August 27th 2026",
-      body: "To provide a better service to our customers, we are switching over our booking system on August 27th 2026. The booking system will be down from 5:00 PM to 5:30 PM on August 27th — if you need help booking during this time, please call us at 416-615-2078 (call only) or text (416) 571-9470 (text only). Any bookings after August 27th 2026 will still be reserved and will be handled by our team. Thank you for your patience.",
-    },
-    {
       title: "4% Processing Fee on Online Bookings",
       body: "All online bookings are subject to a 4% processing fee.",
     },
@@ -274,10 +270,10 @@ if (!sessionStorage.getItem("booking-notice-dismissed") && !document.querySelect
   const bHeadText = document.createElement("div");
   const bEyebrow = document.createElement("p");
   bEyebrow.className = "eyebrow";
-  bEyebrow.textContent = "Important Notice";
+  bEyebrow.textContent = "New Booking System";
   const bTitle = document.createElement("h2");
   bTitle.id = "booking-notice-title";
-  bTitle.textContent = "Booking System Update";
+  bTitle.textContent = "We've Officially Moved Over!";
   bHeadText.append(bEyebrow, bTitle);
   const bCloseBtn = document.createElement("button");
   bCloseBtn.className = "announcement-close";
@@ -289,9 +285,7 @@ if (!sessionStorage.getItem("booking-notice-dismissed") && !document.querySelect
   const bBody = document.createElement("div");
   bBody.className = "announcement-body";
   [
-    "To provide a better service to our customers, we are switching over our booking system on August 27th 2026.",
-    "Please note the booking system will be down from 5:00 PM to 5:30 PM on August 27th. If you need help booking during this time, please call us at 416-615-2078 (call only) or text (416) 571-9470 (text only).",
-    "If you have any concerns about your bookings please contact us at 416-615-2078 (call only) or text (416) 571-9470 (text only). Any bookings after August 27th 2026 will still be reserved and will be handled by our team. Thank you for your patience.",
+    "We have officially moved over to our new booking system. Sign up to book your court.",
   ].forEach((line) => {
     const p = document.createElement("p");
     p.textContent = line;
@@ -302,8 +296,10 @@ if (!sessionStorage.getItem("booking-notice-dismissed") && !document.querySelect
   bActions.className = "announcement-actions";
   const bCallBtn = document.createElement("a");
   bCallBtn.className = "button";
-  bCallBtn.href = "tel:4166152078";
-  bCallBtn.textContent = "Call Now";
+  bCallBtn.href = "https://app.courtreserve.com/Online/Portal/Index/18541";
+  bCallBtn.target = "_blank";
+  bCallBtn.rel = "noreferrer";
+  bCallBtn.textContent = "Sign Up Here";
   const bDismissBtn = document.createElement("button");
   bDismissBtn.className = "button button-secondary";
   bDismissBtn.type = "button";
