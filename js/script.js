@@ -415,6 +415,9 @@ if (!reduceMotion) {
   const IDLE_DELAY = 5000;
   const AUTO_SPEED = 0.05; // px per ms
 
+  const FRICTION = 0.95; // velocity multiplier applied per ~16.7ms
+  const MIN_VELOCITY = 0.02; // px/ms — below this, momentum stops
+
   let currentX = 0;
   let cachedMax = 0;
   let isDragging = false;
@@ -427,6 +430,10 @@ if (!reduceMotion) {
   let autoDirection = -1;
   let autoFrame = null;
   let lastFrameTime = null;
+  let velocity = 0; // px per ms
+  let lastMoveTime = 0;
+  let lastMoveClientX = 0;
+  let momentumFrame = null;
 
   function measureMax() {
     cachedMax = Math.max(0, track.scrollWidth - viewport.clientWidth);
@@ -481,8 +488,16 @@ if (!reduceMotion) {
     idleTimer = window.setTimeout(startAuto, IDLE_DELAY);
   }
 
+  function cancelMomentum() {
+    if (momentumFrame) {
+      cancelAnimationFrame(momentumFrame);
+      momentumFrame = null;
+    }
+  }
+
   function handleInteractionStart() {
     stopAuto();
+    cancelMomentum();
     window.clearTimeout(idleTimer);
   }
 
@@ -497,6 +512,42 @@ if (!reduceMotion) {
     }
   }
 
+  function startMomentum() {
+    if (Math.abs(velocity) < MIN_VELOCITY) {
+      scheduleAuto();
+      return;
+    }
+    let v = velocity;
+    let lastTime = null;
+
+    function momentumStep(timestamp) {
+      if (lastTime === null) lastTime = timestamp;
+      const dt = timestamp - lastTime;
+      lastTime = timestamp;
+
+      v *= Math.pow(FRICTION, dt / 16.7);
+
+      let next = currentX + v * dt;
+      if (next <= -cachedMax) {
+        next = -cachedMax;
+        v = 0;
+      } else if (next >= 0) {
+        next = 0;
+        v = 0;
+      }
+      applyX(next);
+
+      if (Math.abs(v) < MIN_VELOCITY) {
+        momentumFrame = null;
+        scheduleAuto();
+        return;
+      }
+      momentumFrame = requestAnimationFrame(momentumStep);
+    }
+
+    momentumFrame = requestAnimationFrame(momentumStep);
+  }
+
   track.addEventListener("pointerdown", (event) => {
     if (event.target.closest(".coach-photo-toggle")) return;
     isDragging = true;
@@ -505,6 +556,9 @@ if (!reduceMotion) {
     track.classList.add("is-dragging");
     dragStartClientX = event.clientX;
     dragStartX = currentX;
+    lastMoveTime = event.timeStamp;
+    lastMoveClientX = event.clientX;
+    velocity = 0;
     measureMax();
     handleInteractionStart();
     if (!dragRAF) dragRAF = requestAnimationFrame(dragTick);
@@ -512,6 +566,12 @@ if (!reduceMotion) {
 
   track.addEventListener("pointermove", (event) => {
     if (!isDragging || event.pointerId !== pointerId) return;
+    const dt = event.timeStamp - lastMoveTime;
+    if (dt > 0) {
+      velocity = (event.clientX - lastMoveClientX) / dt;
+    }
+    lastMoveTime = event.timeStamp;
+    lastMoveClientX = event.clientX;
     pendingX = dragStartX + (event.clientX - dragStartClientX);
   });
 
@@ -520,7 +580,11 @@ if (!reduceMotion) {
     isDragging = false;
     pointerId = null;
     track.classList.remove("is-dragging");
-    scheduleAuto();
+    if (pendingX !== null) {
+      applyX(pendingX);
+      pendingX = null;
+    }
+    startMomentum();
   }
 
   track.addEventListener("pointerup", endDrag);

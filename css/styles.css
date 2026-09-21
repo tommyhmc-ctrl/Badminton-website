@@ -1061,6 +1061,10 @@ a.program-detail {
   will-change: transform;
 }
 
+.coach-grid.coach-profile-grid * {
+  touch-action: pan-y;
+}
+
 .coach-grid.coach-profile-grid.is-dragging {
   cursor: grabbing;
 }
