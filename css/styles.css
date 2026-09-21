@@ -1045,30 +1045,36 @@ a.program-detail {
   align-items: stretch;
 }
 
+.coach-carousel-viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
 .coach-grid.coach-profile-grid {
   display: flex;
   flex-wrap: nowrap;
   gap: 1rem;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  width: max-content;
   cursor: grab;
   user-select: none;
-}
-
-.coach-grid.coach-profile-grid::-webkit-scrollbar {
-  display: none;
+  touch-action: pan-y;
+  will-change: transform;
 }
 
 .coach-grid.coach-profile-grid.is-dragging {
   cursor: grabbing;
-  scroll-behavior: auto;
 }
 
 .coach-grid.coach-profile-grid .coach-card.coach-profile {
   width: 300px;
   flex-shrink: 0;
+}
+
+@media (max-width: 560px) {
+  .coach-grid.coach-profile-grid .coach-card.coach-profile {
+    width: 78vw;
+    max-width: 300px;
+  }
 }
 
 .coaches-accordion {
@@ -1982,19 +1988,9 @@ body.is-entering-ready .site-footer {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .coach-grid.coach-profile-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .pricing-panel-head {
     flex-direction: column;
     align-items: start;
-  }
-}
-
-@media (max-width: 720px) {
-  .coach-grid.coach-profile-grid {
-    grid-template-columns: 1fr;
   }
 }
 

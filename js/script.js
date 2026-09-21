@@ -406,21 +406,34 @@ if (!reduceMotion) {
   });
 }
 
-// Coach carousel: drag to scroll, auto-oscillate when idle
+// Coach carousel: drag to pan, auto-oscillate when idle (transform-based for reliable mobile support)
 (function () {
   const track = document.querySelector(".coach-grid.coach-profile-grid");
-  if (!track || reduceMotion) return;
+  const viewport = track && track.closest(".coach-carousel-viewport");
+  if (!track || !viewport || reduceMotion) return;
 
   const IDLE_DELAY = 5000;
   const AUTO_SPEED = 0.05; // px per ms
 
+  let currentX = 0;
   let isDragging = false;
+  let pointerId = null;
+  let dragStartClientX = 0;
   let dragStartX = 0;
-  let dragStartScroll = 0;
   let idleTimer = null;
-  let autoDirection = 1;
+  let autoDirection = -1;
   let autoFrame = null;
   let lastFrameTime = null;
+
+  function maxOffset() {
+    return Math.max(0, track.scrollWidth - viewport.clientWidth);
+  }
+
+  function setX(x) {
+    const max = maxOffset();
+    currentX = Math.min(0, Math.max(-max, x));
+    track.style.transform = `translateX(${currentX}px)`;
+  }
 
   function stopAuto() {
     if (autoFrame) {
@@ -435,21 +448,21 @@ if (!reduceMotion) {
     const delta = timestamp - lastFrameTime;
     lastFrameTime = timestamp;
 
-    const maxScroll = track.scrollWidth - track.clientWidth;
-    if (maxScroll <= 0) {
+    const max = maxOffset();
+    if (max <= 0) {
       autoFrame = null;
       return;
     }
 
-    track.scrollLeft += autoDirection * AUTO_SPEED * delta;
-
-    if (track.scrollLeft >= maxScroll) {
-      track.scrollLeft = maxScroll;
-      autoDirection = -1;
-    } else if (track.scrollLeft <= 0) {
-      track.scrollLeft = 0;
+    let next = currentX + autoDirection * AUTO_SPEED * delta;
+    if (next <= -max) {
+      next = -max;
       autoDirection = 1;
+    } else if (next >= 0) {
+      next = 0;
+      autoDirection = -1;
     }
+    setX(next);
 
     autoFrame = requestAnimationFrame(stepAuto);
   }
@@ -470,30 +483,33 @@ if (!reduceMotion) {
     window.clearTimeout(idleTimer);
   }
 
-  track.addEventListener("mousedown", (event) => {
+  track.addEventListener("pointerdown", (event) => {
     if (event.target.closest(".coach-photo-toggle")) return;
     isDragging = true;
+    pointerId = event.pointerId;
+    track.setPointerCapture(pointerId);
     track.classList.add("is-dragging");
-    dragStartX = event.clientX;
-    dragStartScroll = track.scrollLeft;
+    dragStartClientX = event.clientX;
+    dragStartX = currentX;
     handleInteractionStart();
-    event.preventDefault();
   });
 
-  window.addEventListener("mousemove", (event) => {
-    if (!isDragging) return;
-    track.scrollLeft = dragStartScroll - (event.clientX - dragStartX);
+  track.addEventListener("pointermove", (event) => {
+    if (!isDragging || event.pointerId !== pointerId) return;
+    setX(dragStartX + (event.clientX - dragStartClientX));
   });
 
-  window.addEventListener("mouseup", () => {
-    if (!isDragging) return;
+  function endDrag(event) {
+    if (!isDragging || (pointerId !== null && event.pointerId !== pointerId)) return;
     isDragging = false;
+    pointerId = null;
     track.classList.remove("is-dragging");
     scheduleAuto();
-  });
+  }
 
-  track.addEventListener("touchstart", handleInteractionStart, { passive: true });
-  track.addEventListener("touchend", scheduleAuto, { passive: true });
+  track.addEventListener("pointerup", endDrag);
+  track.addEventListener("pointercancel", endDrag);
+
   track.addEventListener(
     "wheel",
     () => {
@@ -505,6 +521,10 @@ if (!reduceMotion) {
   track.addEventListener("coach-carousel-interact", () => {
     handleInteractionStart();
     scheduleAuto();
+  });
+
+  window.addEventListener("resize", () => {
+    setX(currentX);
   });
 
   startAuto();
