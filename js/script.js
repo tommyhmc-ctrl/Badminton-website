@@ -416,22 +416,25 @@ if (!reduceMotion) {
   const AUTO_SPEED = 0.05; // px per ms
 
   let currentX = 0;
+  let cachedMax = 0;
   let isDragging = false;
   let pointerId = null;
   let dragStartClientX = 0;
   let dragStartX = 0;
+  let pendingX = null;
+  let dragRAF = null;
   let idleTimer = null;
   let autoDirection = -1;
   let autoFrame = null;
   let lastFrameTime = null;
 
-  function maxOffset() {
-    return Math.max(0, track.scrollWidth - viewport.clientWidth);
+  function measureMax() {
+    cachedMax = Math.max(0, track.scrollWidth - viewport.clientWidth);
+    return cachedMax;
   }
 
-  function setX(x) {
-    const max = maxOffset();
-    currentX = Math.min(0, Math.max(-max, x));
+  function applyX(x) {
+    currentX = Math.min(0, Math.max(-cachedMax, x));
     track.style.transform = `translateX(${currentX}px)`;
   }
 
@@ -448,21 +451,21 @@ if (!reduceMotion) {
     const delta = timestamp - lastFrameTime;
     lastFrameTime = timestamp;
 
-    const max = maxOffset();
-    if (max <= 0) {
+    measureMax();
+    if (cachedMax <= 0) {
       autoFrame = null;
       return;
     }
 
     let next = currentX + autoDirection * AUTO_SPEED * delta;
-    if (next <= -max) {
-      next = -max;
+    if (next <= -cachedMax) {
+      next = -cachedMax;
       autoDirection = 1;
     } else if (next >= 0) {
       next = 0;
       autoDirection = -1;
     }
-    setX(next);
+    applyX(next);
 
     autoFrame = requestAnimationFrame(stepAuto);
   }
@@ -483,6 +486,17 @@ if (!reduceMotion) {
     window.clearTimeout(idleTimer);
   }
 
+  function dragTick() {
+    dragRAF = null;
+    if (pendingX !== null) {
+      applyX(pendingX);
+      pendingX = null;
+    }
+    if (isDragging) {
+      dragRAF = requestAnimationFrame(dragTick);
+    }
+  }
+
   track.addEventListener("pointerdown", (event) => {
     if (event.target.closest(".coach-photo-toggle")) return;
     isDragging = true;
@@ -491,12 +505,14 @@ if (!reduceMotion) {
     track.classList.add("is-dragging");
     dragStartClientX = event.clientX;
     dragStartX = currentX;
+    measureMax();
     handleInteractionStart();
+    if (!dragRAF) dragRAF = requestAnimationFrame(dragTick);
   });
 
   track.addEventListener("pointermove", (event) => {
     if (!isDragging || event.pointerId !== pointerId) return;
-    setX(dragStartX + (event.clientX - dragStartClientX));
+    pendingX = dragStartX + (event.clientX - dragStartClientX);
   });
 
   function endDrag(event) {
@@ -524,9 +540,11 @@ if (!reduceMotion) {
   });
 
   window.addEventListener("resize", () => {
-    setX(currentX);
+    measureMax();
+    applyX(currentX);
   });
 
+  measureMax();
   startAuto();
 })();
 
