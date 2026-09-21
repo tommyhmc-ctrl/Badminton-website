@@ -2,17 +2,6 @@ const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelector(".nav-links");
 const page = document.body.dataset.page;
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const announcementConfig = {
-  title: "Pickleball Court Booking",
-  tag: "Reminder",
-  body: [
-    "Pickleball court reservations are handled by phone — online booking is not available for pickleball courts.",
-    "To book, please call us at 416-615-2078 (call only) or text (416) 571-9470 (text only). We'll check availability and confirm your spot.",
-  ],
-  primaryLabel: "Call Now",
-  primaryHref: "tel:4166152078",
-  secondaryLabel: "Close",
-};
 
 if (page) {
   document.querySelector(`[data-nav="${page}"]`)?.classList.add("is-active");
@@ -325,93 +314,6 @@ if (!sessionStorage.getItem("booking-notice-dismissed") && !document.querySelect
   }, reduceMotion ? 0 : 300);
 }
 
-if (page === "pickleball" && !document.querySelector(".announcement-overlay")) {
-  // Sanitise config values before injecting into DOM
-  function safeText(str) {
-    const el = document.createElement("span");
-    el.textContent = String(str);
-    return el.textContent;
-  }
-  function safeHref(str) {
-    const s = String(str);
-    return (s.startsWith("http://") || s.startsWith("https://") || s.endsWith(".html")) ? s : "#";
-  }
-
-  const overlay = document.createElement("div");
-  overlay.className = "announcement-overlay";
-
-  const modal = document.createElement("div");
-  modal.className = "announcement-modal";
-  modal.setAttribute("role", "dialog");
-  modal.setAttribute("aria-modal", "true");
-  modal.setAttribute("aria-labelledby", "announcement-title");
-
-  const head = document.createElement("div");
-  head.className = "announcement-head";
-
-  const headText = document.createElement("div");
-  const eyebrow = document.createElement("p");
-  eyebrow.className = "eyebrow";
-  eyebrow.textContent = safeText(announcementConfig.tag);
-  const title = document.createElement("h2");
-  title.id = "announcement-title";
-  title.textContent = safeText(announcementConfig.title);
-  headText.append(eyebrow, title);
-
-  const closeBtn = document.createElement("button");
-  closeBtn.className = "announcement-close";
-  closeBtn.type = "button";
-  closeBtn.setAttribute("aria-label", "Close announcement");
-  closeBtn.textContent = "×";
-
-  head.append(headText, closeBtn);
-
-  const body = document.createElement("div");
-  body.className = "announcement-body";
-  announcementConfig.body.forEach((line) => {
-    const p = document.createElement("p");
-    p.textContent = safeText(line);
-    body.appendChild(p);
-  });
-
-  const actions = document.createElement("div");
-  actions.className = "announcement-actions";
-  const primaryLink = document.createElement("a");
-  primaryLink.className = "button";
-  primaryLink.href = safeHref(announcementConfig.primaryHref);
-  primaryLink.textContent = safeText(announcementConfig.primaryLabel);
-  const dismissBtn = document.createElement("button");
-  dismissBtn.className = "button button-secondary announcement-dismiss";
-  dismissBtn.type = "button";
-  dismissBtn.textContent = safeText(announcementConfig.secondaryLabel);
-  actions.append(primaryLink, dismissBtn);
-
-  modal.append(head, body, actions);
-  overlay.appendChild(modal);
-  document.body.appendChild(overlay);
-
-  const closeAnnouncement = () => {
-    overlay.classList.remove("is-open");
-  };
-
-  overlay.querySelector(".announcement-close")?.addEventListener("click", closeAnnouncement);
-  overlay.querySelector(".announcement-dismiss")?.addEventListener("click", closeAnnouncement);
-  overlay.addEventListener("click", (event) => {
-    if (event.target === overlay) {
-      closeAnnouncement();
-    }
-  });
-
-  window.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      closeAnnouncement();
-    }
-  });
-
-  window.setTimeout(() => {
-    overlay.classList.add("is-open");
-  }, reduceMotion ? 0 : 180);
-}
 
 if (!reduceMotion) {
   document.body.classList.add("is-entering");
@@ -503,5 +405,150 @@ if (!reduceMotion) {
     });
   });
 }
+
+// Coach carousel: drag to scroll, auto-oscillate when idle
+(function () {
+  const track = document.querySelector(".coach-grid.coach-profile-grid");
+  if (!track || reduceMotion) return;
+
+  const IDLE_DELAY = 5000;
+  const AUTO_SPEED = 0.05; // px per ms
+
+  let isDragging = false;
+  let dragStartX = 0;
+  let dragStartScroll = 0;
+  let idleTimer = null;
+  let autoDirection = 1;
+  let autoFrame = null;
+  let lastFrameTime = null;
+
+  function stopAuto() {
+    if (autoFrame) {
+      cancelAnimationFrame(autoFrame);
+      autoFrame = null;
+    }
+    lastFrameTime = null;
+  }
+
+  function stepAuto(timestamp) {
+    if (lastFrameTime === null) lastFrameTime = timestamp;
+    const delta = timestamp - lastFrameTime;
+    lastFrameTime = timestamp;
+
+    const maxScroll = track.scrollWidth - track.clientWidth;
+    if (maxScroll <= 0) {
+      autoFrame = null;
+      return;
+    }
+
+    track.scrollLeft += autoDirection * AUTO_SPEED * delta;
+
+    if (track.scrollLeft >= maxScroll) {
+      track.scrollLeft = maxScroll;
+      autoDirection = -1;
+    } else if (track.scrollLeft <= 0) {
+      track.scrollLeft = 0;
+      autoDirection = 1;
+    }
+
+    autoFrame = requestAnimationFrame(stepAuto);
+  }
+
+  function startAuto() {
+    if (autoFrame || isDragging) return;
+    lastFrameTime = null;
+    autoFrame = requestAnimationFrame(stepAuto);
+  }
+
+  function scheduleAuto() {
+    window.clearTimeout(idleTimer);
+    idleTimer = window.setTimeout(startAuto, IDLE_DELAY);
+  }
+
+  function handleInteractionStart() {
+    stopAuto();
+    window.clearTimeout(idleTimer);
+  }
+
+  track.addEventListener("mousedown", (event) => {
+    if (event.target.closest(".coach-photo-toggle")) return;
+    isDragging = true;
+    track.classList.add("is-dragging");
+    dragStartX = event.clientX;
+    dragStartScroll = track.scrollLeft;
+    handleInteractionStart();
+    event.preventDefault();
+  });
+
+  window.addEventListener("mousemove", (event) => {
+    if (!isDragging) return;
+    track.scrollLeft = dragStartScroll - (event.clientX - dragStartX);
+  });
+
+  window.addEventListener("mouseup", () => {
+    if (!isDragging) return;
+    isDragging = false;
+    track.classList.remove("is-dragging");
+    scheduleAuto();
+  });
+
+  track.addEventListener("touchstart", handleInteractionStart, { passive: true });
+  track.addEventListener("touchend", scheduleAuto, { passive: true });
+  track.addEventListener(
+    "wheel",
+    () => {
+      handleInteractionStart();
+      scheduleAuto();
+    },
+    { passive: true }
+  );
+  track.addEventListener("coach-carousel-interact", () => {
+    handleInteractionStart();
+    scheduleAuto();
+  });
+
+  startAuto();
+})();
+
+// Coach cards with multiple photos: add prev/next buttons to switch between them
+(function () {
+  document.querySelectorAll(".coach-photo[data-photos]").forEach((img) => {
+    const photos = img.dataset.photos
+      .split(",")
+      .map((p) => p.trim())
+      .filter(Boolean);
+    if (photos.length < 2) return;
+
+    let index = Math.max(0, photos.indexOf(img.getAttribute("src")));
+
+    const wrap = document.createElement("div");
+    wrap.className = "coach-photo-wrap";
+    img.parentNode.insertBefore(wrap, img);
+    wrap.appendChild(img);
+
+    function makeButton(direction) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = `coach-photo-toggle coach-photo-toggle-${direction === -1 ? "prev" : "next"}`;
+      btn.setAttribute("aria-label", direction === -1 ? "Show previous photo" : "Show next photo");
+      btn.innerHTML =
+        direction === -1
+          ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 4l-8 8 8 8"/></svg>'
+          : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4l8 8-8 8"/></svg>';
+      btn.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        index = (index + direction + photos.length) % photos.length;
+        img.src = photos[index];
+        const track = wrap.closest(".coach-grid.coach-profile-grid");
+        if (track) track.dispatchEvent(new Event("coach-carousel-interact"));
+      });
+      return btn;
+    }
+
+    wrap.appendChild(makeButton(-1));
+    wrap.appendChild(makeButton(1));
+  });
+})();
 
 

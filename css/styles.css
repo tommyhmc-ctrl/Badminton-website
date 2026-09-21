@@ -151,6 +151,7 @@ textarea:focus-visible {
 .brand img {
   width: 10.5rem;
   height: auto;
+  aspect-ratio: 5 / 3;
 }
 
 .site-header .brand img {
@@ -1044,6 +1045,32 @@ a.program-detail {
   align-items: stretch;
 }
 
+.coach-grid.coach-profile-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
+}
+
+.coach-grid.coach-profile-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.coach-grid.coach-profile-grid.is-dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+}
+
+.coach-grid.coach-profile-grid .coach-card.coach-profile {
+  width: 300px;
+  flex-shrink: 0;
+}
+
 .coaches-accordion {
   background: var(--surface);
   border-radius: var(--radius);
@@ -1093,7 +1120,7 @@ a.program-detail {
   margin-top: 0;
 }
 
-.coach-profile {
+.coach-card.coach-profile {
   overflow: hidden;
   padding: 0;
 }
@@ -1107,6 +1134,49 @@ a.program-detail {
 
 img.coach-photo[src*="samson"] {
   object-position: center 30%;
+}
+
+.coach-photo-wrap {
+  position: relative;
+}
+
+.coach-photo-wrap .coach-photo {
+  display: block;
+}
+
+.coach-photo-toggle {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  border: none;
+  background: rgba(11, 26, 43, 0.6);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.coach-photo-toggle-prev {
+  left: 0.65rem;
+}
+
+.coach-photo-toggle-next {
+  right: 0.65rem;
+}
+
+.coach-photo-toggle svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.coach-photo-toggle:hover {
+  background: rgba(11, 26, 43, 0.85);
+  transform: translateY(-50%) scale(1.07);
 }
 
 .coach-profile-body {
@@ -1912,9 +1982,19 @@ body.is-entering-ready .site-footer {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .coach-grid.coach-profile-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .pricing-panel-head {
     flex-direction: column;
     align-items: start;
+  }
+}
+
+@media (max-width: 720px) {
+  .coach-grid.coach-profile-grid {
+    grid-template-columns: 1fr;
   }
 }
 
