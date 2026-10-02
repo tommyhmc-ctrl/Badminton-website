@@ -243,8 +243,8 @@ if (!document.querySelector(".page-transition")) {
   document.body.appendChild(transitionLayer);
 }
 
-// Site-wide booking system notice — shows once per session
-if (!sessionStorage.getItem("booking-notice-dismissed") && !document.querySelector(".announcement-overlay")) {
+// Site-wide facility notice — shows once per session
+if (!sessionStorage.getItem("power-shutdown-notice-dismissed") && !document.querySelector(".announcement-overlay")) {
   const bOverlay = document.createElement("div");
   bOverlay.className = "announcement-overlay";
 
@@ -259,10 +259,10 @@ if (!sessionStorage.getItem("booking-notice-dismissed") && !document.querySelect
   const bHeadText = document.createElement("div");
   const bEyebrow = document.createElement("p");
   bEyebrow.className = "eyebrow";
-  bEyebrow.textContent = "New Booking System";
+  bEyebrow.textContent = "Facility Notice";
   const bTitle = document.createElement("h2");
   bTitle.id = "booking-notice-title";
-  bTitle.textContent = "We've Officially Moved Over!";
+  bTitle.textContent = "Power Shutdown Tonight";
   bHeadText.append(bEyebrow, bTitle);
   const bCloseBtn = document.createElement("button");
   bCloseBtn.className = "announcement-close";
@@ -273,27 +273,22 @@ if (!sessionStorage.getItem("booking-notice-dismissed") && !document.querySelect
 
   const bBody = document.createElement("div");
   bBody.className = "announcement-body";
-  [
-    "We have officially moved over to our new booking system. Sign up to book your court.",
-  ].forEach((line) => {
-    const p = document.createElement("p");
-    p.textContent = line;
-    bBody.appendChild(p);
-  });
+  bBody.innerHTML = `
+    <p><strong>Friday, October 2 | 10:30 PM &ndash; Saturday, October 3 | 8:00 AM</strong></p>
+    <p>As part of the building's scheduled electrical maintenance conducted every two years, Vision Badminton will be cooperating with the building-wide power shutdown tonight.</p>
+    <p><strong>All bookings will end by 10:00 PM tonight.</strong><br>Power will be shut down promptly at 10:30 PM, and all members and guests <strong>must leave the building before 10:30 PM</strong> for safety.</p>
+    <p><strong>Regular operations will resume at 8:00 AM on Saturday, October 3.</strong></p>
+    <p><strong>Please note:</strong> this early closure applies only to this Friday evening. Our regular business hours will remain unchanged afterward. Any future scheduled electrical maintenance affecting our operating hours will be communicated separately.</p>
+    <p>Thank you for your understanding and cooperation.</p>
+  `;
 
   const bActions = document.createElement("div");
   bActions.className = "announcement-actions";
-  const bCallBtn = document.createElement("a");
-  bCallBtn.className = "button";
-  bCallBtn.href = "https://app.courtreserve.com/Online/Portal/Index/18541";
-  bCallBtn.target = "_blank";
-  bCallBtn.rel = "noreferrer";
-  bCallBtn.textContent = "Sign Up Here";
   const bDismissBtn = document.createElement("button");
-  bDismissBtn.className = "button button-secondary";
+  bDismissBtn.className = "button";
   bDismissBtn.type = "button";
-  bDismissBtn.textContent = "Close";
-  bActions.append(bCallBtn, bDismissBtn);
+  bDismissBtn.textContent = "Got It";
+  bActions.append(bDismissBtn);
 
   bModal.append(bHead, bBody, bActions);
   bOverlay.appendChild(bModal);
@@ -301,7 +296,7 @@ if (!sessionStorage.getItem("booking-notice-dismissed") && !document.querySelect
 
   const closeBookingNotice = () => {
     bOverlay.classList.remove("is-open");
-    sessionStorage.setItem("booking-notice-dismissed", "1");
+    sessionStorage.setItem("power-shutdown-notice-dismissed", "1");
   };
 
   bCloseBtn.addEventListener("click", closeBookingNotice);
