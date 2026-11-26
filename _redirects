@@ -1,2 +1,4 @@
-/pages/index.html  /  301
-/service-page/*    /pages/booking.html  301
+/pages/index.html  /scarborough/  301
+/pages/index       /scarborough/  301
+/pages/*           /scarborough/:splat  301
+/service-page/*    /scarborough/booking  301

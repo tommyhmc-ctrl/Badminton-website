@@ -158,6 +158,99 @@ textarea:focus-visible {
   mix-blend-mode: multiply;
 }
 
+.brand-wrap {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.location-switch {
+  position: relative;
+  margin-top: -0.7rem;
+}
+
+.location-switch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.65rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--accent);
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.location-switch-btn:hover,
+.location-switch.is-open .location-switch-btn {
+  background: rgba(224, 128, 0, 0.12);
+}
+
+.location-switch-btn .nav-caret {
+  letter-spacing: 0;
+  transition: transform 160ms ease;
+}
+
+.location-switch.is-open .location-switch-btn .nav-caret {
+  transform: rotate(180deg);
+}
+
+.location-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  left: 0;
+  z-index: 100;
+  min-width: 15rem;
+  padding: 0.4rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(27, 50, 68, 0.16);
+}
+
+.location-switch.is-open .location-menu {
+  display: block;
+}
+
+.location-menu a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 10px;
+  color: var(--brand);
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.location-menu a small {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.location-menu a:hover {
+  background: rgba(43, 86, 114, 0.07);
+}
+
+.location-menu a[aria-current="true"] {
+  background: rgba(224, 128, 0, 0.12);
+}
+
+.location-toggle {
+  display: none;
+}
+
 .site-footer .brand img,
 .footer-brand img {
   mix-blend-mode: normal;
@@ -1065,6 +1158,11 @@ a.program-detail {
   touch-action: pan-y;
 }
 
+.coach-grid.coach-profile-grid.coach-grid-spread {
+  min-width: 100%;
+  justify-content: space-evenly;
+}
+
 .coach-grid.coach-profile-grid.is-dragging {
   cursor: grabbing;
 }
@@ -1144,6 +1242,14 @@ a.program-detail {
 
 img.coach-photo[src*="samson"] {
   object-position: center 30%;
+}
+
+img.coach-photo[src*="hoshue"] {
+  object-position: center 10%;
+}
+
+img.coach-photo[src*="yunzhi-action"] {
+  object-position: 22% center;
 }
 
 .coach-photo-wrap {
@@ -1577,6 +1683,10 @@ img.coach-photo[src*="samson"] {
   background: var(--vb-navy-500);
 }
 
+.footer-grid.footer-grid-3 {
+  grid-template-columns: 1.4fr 1fr 1fr;
+}
+
 .footer-map {
   min-height: 180px;
   border: 1.5px solid rgba(255, 255, 255, 0.15);
@@ -1804,6 +1914,38 @@ body.is-entering .page-transition-logo {
   margin-top: 0.8rem;
 }
 
+.announcement-modal.court-map-modal {
+  width: min(60rem, 100%);
+  max-height: calc(100vh - 2.5rem);
+  overflow-y: auto;
+}
+
+.court-map-link {
+  display: block;
+  margin-top: 1rem;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+}
+
+.court-map-link img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.court-map-modal .court-map-link img {
+  width: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 21rem);
+  margin: 0 auto;
+}
+
+.court-map-hint {
+  font-size: 0.85rem;
+}
+
 .disclaimer-body {
   display: grid;
   gap: 1rem;
@@ -1998,6 +2140,22 @@ body.is-entering-ready .site-footer {
   }
 }
 
+@media (min-width: 861px) and (max-width: 1200px) {
+  .nav-links {
+    gap: 0.75rem;
+  }
+
+  .nav-links a:not(.button) {
+    font-size: 0.93rem;
+  }
+
+  .nav-links .button {
+    margin-right: 0.5rem;
+    padding: 0.75rem 1.35rem;
+    font-size: 0.95rem;
+  }
+}
+
 @media (max-width: 860px) {
 
   .nav {
@@ -2164,7 +2322,8 @@ body.is-entering-ready .site-footer {
     gap: 1.25rem;
   }
 
-  .footer-grid {
+  .footer-grid,
+  .footer-grid.footer-grid-3 {
     grid-template-columns: 1fr;
   }
 
@@ -2234,6 +2393,30 @@ body.is-entering-ready .site-footer {
   .instagram-cta {
     width: 100%;
     text-align: center;
+  }
+}
+
+@media (max-width: 860px) {
+  .location-toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.25rem;
+    padding: 0.25rem;
+    border-radius: 999px;
+    background: rgba(43, 86, 114, 0.08);
+  }
+
+  .nav-links .location-toggle a:not(.button) {
+    padding: 0.6rem 0.4rem;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  .nav-links .location-toggle a[aria-current="true"] {
+    background: #fff;
+    color: var(--accent);
+    box-shadow: 0 2px 8px rgba(27, 50, 68, 0.12);
   }
 }
 
@@ -2342,6 +2525,11 @@ body.is-entering-ready .site-footer {
     width: 9rem;
   }
 
+  .location-switch-btn {
+    padding: 0.55rem 0.75rem;
+    font-size: 0.66rem;
+  }
+
   .footer-group h3 {
     font-size: 1.1rem;
   }
@@ -2390,5 +2578,52 @@ body.is-entering-ready .site-footer {
   .reveal {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* Phone refinements: shorter hero photos, price tables that fit the screen */
+@media (max-width: 560px) {
+  .hero-visual .visual-small {
+    display: none;
+  }
+
+  .hero-visual .visual-large,
+  .hero-visual .visual-large img {
+    min-height: 0;
+    height: 15rem;
+  }
+
+  .court-table-wrap {
+    padding: 0.5rem;
+  }
+
+  .court-rate-table {
+    min-width: 0;
+  }
+
+  .court-rate-table thead th,
+  .court-rate-table tbody td {
+    padding: 0.7rem 0.45rem;
+    font-size: 0.82rem;
+  }
+
+  .court-rate-table .court-col-category {
+    width: 31%;
+  }
+
+  .court-rate-table .court-col-day {
+    width: 24%;
+  }
+
+  .court-rate-table .court-col-time {
+    width: 25%;
+  }
+
+  .court-rate-table .court-col-rate {
+    width: 20%;
+  }
+
+  .court-rate-table .court-rate-value {
+    font-size: 1.15rem;
   }
 }

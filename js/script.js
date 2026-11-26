@@ -581,4 +581,137 @@ if (!reduceMotion) {
   });
 })();
 
+// Location switcher: dropdown under the logo
+(function () {
+  const switches = document.querySelectorAll(".location-switch");
+  if (!switches.length) return;
 
+  const closeAll = () => {
+    switches.forEach((s) => {
+      s.classList.remove("is-open");
+      s.querySelector(".location-switch-btn").setAttribute("aria-expanded", "false");
+    });
+  };
+
+  switches.forEach((s) => {
+    const btn = s.querySelector(".location-switch-btn");
+    btn.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const willOpen = !s.classList.contains("is-open");
+      closeAll();
+      if (willOpen) {
+        s.classList.add("is-open");
+        btn.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest(".location-switch")) closeAll();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeAll();
+  });
+})();
+
+// Victoria Park: show the court map once per visit before opening the booking portal
+(function () {
+  const links = document.querySelectorAll('a[href*="/Portal/Index/21938"]');
+  if (!links.length) return;
+
+  const MAP_SRC = "../assets/victoria-park-court-map.png";
+  let overlay = null;
+  let continueBtn = null;
+
+  function close() {
+    if (overlay) overlay.classList.remove("is-open");
+  }
+
+  function build() {
+    overlay = document.createElement("div");
+    overlay.className = "announcement-overlay";
+
+    const modal = document.createElement("div");
+    modal.className = "announcement-modal court-map-modal";
+    modal.setAttribute("role", "dialog");
+    modal.setAttribute("aria-modal", "true");
+    modal.setAttribute("aria-labelledby", "court-map-title");
+
+    const head = document.createElement("div");
+    head.className = "announcement-head";
+    const headText = document.createElement("div");
+    const eyebrow = document.createElement("p");
+    eyebrow.className = "eyebrow";
+    eyebrow.textContent = "Before You Book";
+    const title = document.createElement("h2");
+    title.id = "court-map-title";
+    title.textContent = "Find Your Court";
+    headText.append(eyebrow, title);
+    const closeBtn = document.createElement("button");
+    closeBtn.className = "announcement-close";
+    closeBtn.type = "button";
+    closeBtn.setAttribute("aria-label", "Close");
+    closeBtn.textContent = "\u00d7";
+    head.append(headText, closeBtn);
+
+    const body = document.createElement("div");
+    body.className = "announcement-body";
+    const intro = document.createElement("p");
+    intro.textContent = "Badminton courts are B1\u2013B11 (left side) and pickleball courts are P1\u2013P9 (right side). Check in at the front, then head to your court number.";
+    const mapLink = document.createElement("a");
+    mapLink.className = "court-map-link";
+    mapLink.href = MAP_SRC;
+    mapLink.target = "_blank";
+    mapLink.rel = "noreferrer";
+    const img = document.createElement("img");
+    img.src = MAP_SRC;
+    img.alt = "Court map of Vision Badminton Victoria Park: badminton courts B1 to B11 on the left, pickleball courts P1 to P9 on the right, with the lobby and entrance at the bottom, and the snack bar, changing rooms and spectator areas in between.";
+    mapLink.appendChild(img);
+    const hint = document.createElement("p");
+    hint.className = "court-map-hint";
+    hint.textContent = "Tap the map to enlarge it.";
+    body.append(intro, mapLink, hint);
+
+    const actions = document.createElement("div");
+    actions.className = "announcement-actions";
+    continueBtn = document.createElement("a");
+    continueBtn.className = "button";
+    continueBtn.target = "_blank";
+    continueBtn.rel = "noreferrer";
+    continueBtn.textContent = "Continue to Booking";
+    continueBtn.addEventListener("click", close);
+    const dismissBtn = document.createElement("button");
+    dismissBtn.className = "button button-secondary";
+    dismissBtn.type = "button";
+    dismissBtn.textContent = "Close";
+    actions.append(continueBtn, dismissBtn);
+
+    modal.append(head, body, actions);
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    closeBtn.addEventListener("click", close);
+    dismissBtn.addEventListener("click", close);
+    overlay.addEventListener("click", (event) => {
+      if (event.target === overlay) close();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") close();
+    });
+  }
+
+  links.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      let seen = false;
+      try { seen = sessionStorage.getItem("vp-court-map-seen") === "1"; } catch (_) {}
+      if (seen) return;
+      event.preventDefault();
+      try { sessionStorage.setItem("vp-court-map-seen", "1"); } catch (_) {}
+      if (!overlay) build();
+      continueBtn.href = link.href;
+      requestAnimationFrame(() => overlay.classList.add("is-open"));
+      continueBtn.focus();
+    });
+  });
+})();
